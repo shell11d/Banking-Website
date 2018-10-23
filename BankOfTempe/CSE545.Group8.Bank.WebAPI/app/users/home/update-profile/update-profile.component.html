@@ -1,0 +1,51 @@
+<div *ngIf="user" class="container">
+    <form id="form-login" (ngSubmit)="updateProfile()" #updateProfileForm="ngForm">
+
+        <h3>Please fill in the following details to update info</h3>
+
+        <div class="form-group">
+            <label for="firstname">First name:</label>
+            <div class="form-input">
+                <input [(ngModel)]="user.firstName" type="text" name="firstname" #firstname="ngModel" pattern="^[a-z A-Z ,.'-]+$">
+            </div>
+            <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
+                    Improper First name
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="lastname">Last name:</label>
+            <div class="form-input">
+                <input [(ngModel)]="user.lastName" type="text" name="lastname" #lastname="ngModel" pattern="^[a-z A-Z ,.'-]+$">
+            </div>
+            <div [hidden]="lastname.valid || lastname.pristine" class="alert alert-danger">
+                    Improper Last name
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="addressname">Address:</label>
+            <div class="form-input">
+                <input [(ngModel)]="user.address" type="text" name="addressname" #addressname="ngModel" pattern="^[a-z A-Z 0-9,.'-]+$">
+            </div>
+            <div [hidden]="addressname.valid || addressname.pristine" class="alert alert-danger">
+
+                    Improper Address
+            </div>
+        </div>
+      
+
+        <div class="form-group">
+            <label for="phonenumber">Phone number:</label>
+            <div class="form-input">
+                <input [(ngModel)]="user.phoneNumber" type="number" name="phonenumber" #phonenumber="ngModel"
+                       pattern="^(\([0-9]{3}\) |[0-9]{3})[0-9]{3}[0-9]{4}$">
+            </div>
+            <div [hidden]="phonenumber.valid || phonenumber.pristine" class="alert alert-danger">
+                    Invalid phone number
+            </div>
+        </div>
+
+        <button type="submit" name="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+</div> 

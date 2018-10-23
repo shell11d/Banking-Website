@@ -1,0 +1,186 @@
+#sign-up-container{
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 55px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    font: bold 14px sans-serif;
+    text-align: left;
+}
+
+#sign-up-container h2{
+    font-size: 25px;
+}
+
+#sign-up-container h3{
+    font-size: 20px;
+    margin-bottom: 10%;
+}
+
+#sign-up-container tr{
+    text-align: left;
+    margin-bottom: 22px;
+}
+
+#sign-up-container th{
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+/* The form title */
+
+#sign-up-container h1{
+    display: inline-block;
+    box-sizing: border-box;
+    color:  #4c565e;
+    font-size: 24px;
+    padding: 0 10px 15px;
+    border-bottom: 2px solid #6caee0;
+    margin: 0;
+}
+
+#sign-up-container input{
+    color:  #5f5f5f;
+    box-sizing: border-box;
+    width: 240px;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 12px;
+    border: 1px solid #dbdbdb;
+}
+
+#sign-up-container input[type=radio],
+#sign-up-container input[type=checkbox]{
+    box-shadow: none;
+    width: auto;
+}
+
+#sign-up-container input[type=checkbox]{
+    margin-top: 13px;
+}
+
+#sign-up-container select{
+    background-color: #ffffff;
+    color:  #5f5f5f;
+    box-sizing: border-box;
+    max-width: 240px;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 12px 8px;
+    border: 1px solid #dbdbdb;
+}
+
+#sign-up-container textarea{
+    color:  #5f5f5f;
+    box-sizing: border-box;
+    width: 240px;
+    height: 80px;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    font: normal 13px sans-serif;
+    padding: 12px;
+    border: 1px solid #dbdbdb;
+    resize: vertical;
+}
+
+#sign-up-container button{
+    display: block;
+    border-radius: 2px;
+    background-color:  #6caee0;
+    color: black;
+    font-weight: bold;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 14px 22px;
+    border: 0;
+    margin: 40px 183px 0;
+}
+
+/*	Making the form responsive. Remove this media query
+    if you don't need the form to work on mobile devices. */
+
+@media (max-width: 600px) {
+
+    #sign-up-container{
+        padding: 30px;
+        max-width: 480px;
+    }
+
+    #sign-up-container tr{
+        max-width: 300px;
+        margin: 25px auto;
+        text-align: left;
+    }
+
+    #sign-up-container tr{
+        margin-bottom: 50px;
+    }
+
+    #sign-up-container tr > label span{
+        display: block;
+        text-align: left;
+        padding: 0 0 15px;
+    }
+
+    #sign-up-container select{
+        width: 240px;
+    }
+
+    #sign-up-container input[type=checkbox]{
+        margin-top:0;
+    }
+
+    #sign-up-container .form-radio-buttons > div{
+        margin: 0 0 10px;
+    }
+
+    #sign-up-container button{
+        margin: 0;
+    }
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+.btn-create
+{
+    padding: 15px 30px;
+    color: black;
+    border-radius: 4px;
+    border:none;
+    background-color:#1DA1F2;
+    border-bottom: 4px solid #1DA1F2;
+    margin-top: 30px;
+    width: 300px;
+    font-size: 20px;
+}
+
+.btn-disabled
+{
+    padding: 15px 30px;
+    color: black;
+    border-radius: 4px;
+    border:none;
+    background-color:#7f8d96;
+    border-bottom: 4px solid #7f8d96;
+    margin-top: 30px;
+    width: 300px;
+    font-size: 20px;
+}
+
+h1{
+font-family:"Times New Roman";}
+
+select, input {width:25%;
+height : 35px;}

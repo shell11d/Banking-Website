@@ -1,0 +1,19 @@
+input[type=text23] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 5px 10px;
+    background-repeat: no-repeat;
+    padding: 1px 10px 1px 4px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text23]:focus {
+    width: 25%;}
+
+table{width:90%;}
+h3, h1{font-family: "Times New Roman";}

@@ -1,0 +1,15 @@
+<h2>Pending Transactions</h2>
+<h3>Resolve transactions for further processing</h3>
+
+
+<div *ngIf="noTranMessage" class="alert warning">{{noTranMessage}}</div>
+
+<div *ngIf="!noTranMessage" class="alert warning">
+    <div *ngFor="let transaction of transactions">
+        <div class="{{transaction.type=='TransactionType.Credit'? 'alert success': 'alert warning'}}">
+            {{transaction.description}}
+            <button class="btn btn-primary" onclick="this.parentElement.style.display='none';" (click)="OnTransactionApproved(transaction)"> yes</button>
+        </div>
+    </div>
+
+</div>

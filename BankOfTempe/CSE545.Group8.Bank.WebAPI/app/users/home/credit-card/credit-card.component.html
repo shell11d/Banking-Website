@@ -1,0 +1,34 @@
+<div id="summary-container">
+<div class="table-responsive">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Account Number</th>
+        <th>Account Type</th>
+        <th>Balance Remaining</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<tr *ngFor="let account of accounts">
+			<td class="info"> {{account.number}} </td>
+			<td class="info"> {{AccountType[account.accountType]}} </td>
+			<td class="info"> <span class="badge">{{account.balance}}</span></td>
+		</tr>
+    </tbody>
+  </table>
+</div>
+<h4>Credit Limit:3214141</h4><br>
+<h4>Outstanding Balance:43242</h4><br>
+
+<button class="btn btn-info" name="makepayment">Make Payment</button>
+<h4>Select your Credit Card Acc:
+
+  <select>
+  <option class="info">Acc1</option>
+</select><br>
+
+<br>
+Who do you want to pay:<input >
+</h4>
+<button class="btn btn-info" name="submit">Submit</button>
+</div>

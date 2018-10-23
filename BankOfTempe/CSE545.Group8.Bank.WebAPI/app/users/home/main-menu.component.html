@@ -1,0 +1,129 @@
+
+<body>
+    
+    <div id="header">
+
+        <img id="bank-logo" src="assets/images/logo.png">
+        <div>
+            <button type="button" class="btn-forgotpassword" (click)="changePassword()">Change Password</button>
+        </div>
+        <div id="user-info">
+            <h2 *ngIf ="user" id="welcome"> Welcome {{user.fullName}}</h2>         
+        </div>
+        <div>
+            
+        </div>
+	<div id="user-info1">
+        <img class="logout" src="assets/images/img-icon-logout.png" (click)="logout()">
+	</div>
+
+    </div>
+
+    <div *ngIf="user" id="main-menu">
+        <ul class="main-menu-container">
+            <li>
+                <a routerLink="summary" routerLinkActive="active"><h4>Summary</h4></a>
+            </li>
+            <li *ngIf="user.type==UserType.Individual || user.type==UserType.Merchant">
+                <a routerLink="fund-transfer" routerLinkActive="active"><h4> Fund Transfer </h4></a>
+            </li>
+            <li *ngIf="user.type==UserType.Individual || user.type==UserType.Merchant">
+                <a routerLink="payments" routerLinkActive="active"><h4> Payments </h4></a>
+            </li>
+           <li *ngIf="user.type==UserType.Employee || user.type==UserType.SystemManager">
+                <a routerLink="notifications" routerLinkActive="active"><h4> Notifications </h4></a>
+            </li>
+            <li *ngIf="user.type==UserType.Employee || user.type==UserType.SystemManager">
+                <a routerLink="create-user" routerLinkActive="active"><h4> Create New User </h4></a>
+            </li>
+		    <li *ngIf="user.type==UserType.Employee || user.type==UserType.SystemManager">
+                <a routerLink="add-account" routerLinkActive="active"><h4>Create New Account</h4></a>
+            </li>
+
+             <li *ngIf="user.type==UserType.Individual || user.type==UserType.Merchant">
+                <a routerLink="view-statements" routerLinkActive="active"><h4> View Statements </h4></a>
+            </li>
+            <li *ngIf="user.type==UserType.Individual || user.type==UserType.Merchant">
+                <a routerLink="credit-card" routerLinkActive="active"><h4> Credit Card </h4></a>
+            </li>
+
+            <li *ngIf="user.type==UserType.Employee || user.type==UserType.SystemManager">
+                <a routerLink="deposit-money" routerLinkActive="active"><h4>Deposit Money</h4></a>
+            </li>
+            <li *ngIf="user.type!=UserType.Administrator">
+                <a routerLink="update-profile"><h4> Update Profile</h4></a>
+            </li> 
+            <li *ngIf="user.type==UserType.Administrator">
+                <a routerLink="add-employee" routerLinkActive="active"><h4>Create Employee </h4></a>
+            </li>
+
+
+            
+     
+        </ul>
+    </div>
+
+
+
+    <modal [animation]="true" [keyboard]="true" [backdrop]="true" #otpModal>
+        <form #otpModalForm="ngForm">
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">We have sent you a Password. You can reset now or later.</h4>
+            </modal-header>
+            <modal-body>
+
+                
+
+                    <div class="form-group">
+                        <label for="newpass">Enter your old password</label>
+                        <div class="form-input">
+                            <input [(ngModel)]="oldPassword" ngControl="oldpass" type="password" name="oldpass" placeholder="Current Password" #oldpass="ngModel" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$">
+                        </div>
+                        <div [hidden]="oldpass.valid || oldpass.pristine" class="alert alert-danger">
+                            <div *ngIf="oldpass.errors && oldpass.errors.required">*Passwrod is required</div>
+                            <div *ngIf="oldpass.errors && oldpass.errors.pattern">Password rules: 8 chars,1 alpha,number, special char.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newpass">Enter your new password</label>
+                        <div class="form-input">
+                            <input [(ngModel)]="newPassword" ngControl="newpass" type="password" name="newpass" placeholder="New Password" #newpass="ngModel" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$">
+                        </div>
+                        <div [hidden]="newpass.valid || newpass.pristine" class="alert alert-danger">
+                            <div *ngIf="newpass.errors && newpass.errors.required">*Passwrod is required</div>
+                            <div *ngIf="newpass.errors && newpass.errors.pattern">Password rules: 8 chars,1 alpha,number, special char.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmpass">Confirm new password</label>
+                        <div class="form-input">
+                            <input [(ngModel)]="confirmPassword" ngControl="confirmpass" type="password" name="confirmpass" placeholder="Confirm Password" #confirmpass="ngModel" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$">
+                        </div>
+                        <div [hidden]="confirmpass.valid || confirmpass.pristine" class="alert alert-danger">
+                            <div *ngIf="confirmpass.errors && confirmpass.errors.required">*Password confirmation is required</div>
+                            <div *ngIf="confirmpass.errors && confirmpass.errors.pattern">Password rules: 8 chars,1 alpha,number, special char.</div>
+                        </div>
+                        
+                    </div>
+                    <div *ngIf="updateError" class="alert alert-warning">{{updateError}}}</div>
+                    <div *ngIf="updateSuccesMessage" class="alert alert-success">
+                        {{updateSuccesMessage}}
+                        <button type="button" class="btn-forgotpassword" (click)="loginBack()">Login</button>
+                    </div>
+                
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="otpModal" (click)="otpModal.dismiss()">Cancel</button>
+                <button type="button" class="btn btn-primary" [disabled]="!otpModalForm.valid" (click)="updatePassword()">Update</button>
+            </modal-footer>
+        </form>
+    </modal>
+
+
+
+    <div id="details-view">
+      <router-outlet></router-outlet>
+    </div>
+</body>

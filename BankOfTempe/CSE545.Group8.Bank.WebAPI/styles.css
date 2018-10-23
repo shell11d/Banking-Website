@@ -1,0 +1,22 @@
+/* Master Styles */
+
+#top-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #1DA1F2;
+  z-index: 9;
+}
+
+body {
+  background-color: #F5F8FA;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+    
+}
+
+#title {
+  text-align: center;
+  color: white;
+}

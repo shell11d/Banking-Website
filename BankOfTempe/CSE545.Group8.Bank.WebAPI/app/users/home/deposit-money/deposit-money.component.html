@@ -1,0 +1,61 @@
+<div id="summary-container">
+<h1> DEPOSIT MONEY </h1>
+ <form id="deposit-form"  #depositMoneyForm="ngForm" novalidate>
+
+
+     <div id="summary-container" *ngIf="!validActUser">
+         <div class="form-group">
+             <label for="userEmail"><h3>User Name:</h3></label>
+             <div class="form-input">
+                 <input [(ngModel)]="acntuserName" ngControl="depAct" type="text" name="userEmail" placeholder="Email ID" #depAct="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+             </div>
+         </div>
+         <div [hidden]="depAct.valid || depAct.pristine" class="alert alert-danger">
+             <div *ngIf="depAct.errors && depAct.errors.required">
+                 *user Name is required
+             </div>
+             <div *ngIf="depAct.errors && depAct.errors.pattern">
+                 Improper user Name
+             </div>
+         </div>
+         <div *ngIf="acntUserError" class="alert alert-warning">{{acntUserError}}</div>
+         <div *ngIf="invalidActUser!=''" class="alert alert-warning">{{invalidActUser}}</div>
+         <div *ngIf="hasNoAccounts!=''" class="alert alert-warning">{{hasNoAccounts}}</div>
+         <button class="button" name="search" [disabled]="!depositMoneyForm.valid" (click)="searchUser()">Search</button>
+     </div>
+
+
+
+     <div id="summary-container" *ngIf="validActUser">
+         <div class="form-group">
+             <label for="depositAccounts">Select an Account</label>
+             <select class="form-control" id="depositAccounts" [(ngModel)]="accountToDeposit" name="depositAccounts" #depositAccount="ngModel" required>
+                 <option *ngFor="let accnt of accountsAvailable" [value]="accnt">{{accnt.accountId}}-{{accnt.type}}</option>
+             </select>
+
+         </div>
+         <div class="form-group">
+             <label for="amount">Amount:</label>
+             <div class="form-input">
+                 <input [(ngModel)]="depositMoney" ngControl="amount" type="text" name="amount" placeholder="$" #amount="ngModel" required pattern="^\$?(?!0\d)(?:\d+|\d{1,3}(?:,\d{1,3})*)(?:\.\d{2})?$">
+             </div>
+         </div>
+
+         <div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">
+             <div *ngIf="amount.errors && amount.errors.required">
+                 *Amount is required
+             </div>
+             <div *ngIf="amount.errors && amount.errors.pattern">
+                 Amount is invalid.
+             </div>
+         </div>
+         <div *ngIf="depositError" class="alert alert-danger">{{depositError}}</div>
+         <div *ngIf="depositSuccess" class="alert alert-success">
+         {{depositSuccess}}
+             <button type="button" value="done" class="btn btn-primary" (click)="doneDeposit()">Done</button>
+
+         </div>
+         <button type="submit" name="submit" value="depositMoney" class="button" [disabled]="!depositMoneyForm.valid" (click)="depositAmount()">Deposit</button>
+    </div>
+</form>
+</div>

@@ -1,0 +1,15 @@
+#fund-transfer-container h2 {
+    font-size: 25px;
+}
+
+#fund-transfer-container h3{
+    font-size: 15px;
+}
+
+#fund-transfer-container select{
+    font-family: cursive;
+}
+
+#fund-transfer-container button{
+    margin-top: 15px;
+}

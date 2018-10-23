@@ -1,0 +1,49 @@
+<form #addAccountForm="ngForm" novalidate>
+    <h1> ADD NEW ACCOUNT </h1>{{invalidAccountCreation}}
+    <div id="summary-container" *ngIf="!validUser">
+        <div class="form-group">
+            <label for="userEmail"><h3>User Name:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="adduserName" ngControl="adAct" type="text" name="userEmail" placeholder="Email ID" #adAct="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            </div>
+        </div>
+        <div [hidden]="adAct.valid || adAct.pristine" class="alert alert-danger">
+            <div *ngIf="adAct.errors && adAct.errors.required">
+                *user Name is required
+            </div>
+            <div *ngIf="adAct.errors && adAct.errors.pattern">
+                Improper user Name
+            </div>
+        </div>
+        <div *ngIf="addUserError" class="alert alert-warning">{{addUserError}}</div>
+        <div *ngIf="invalidUser!=''" class="alert alert-warning">{{invalidUser}}</div>
+        <button class="button" name="search" [disabled]="!addAccountForm.valid" (click)="searchUser()">Search</button>
+    </div>
+    <div id="summary-container" *ngIf="validUser">
+        <div class="table-responsive">
+            <div class='form-group'>
+                <label for="sel1">Select the type of account to be added</label>
+                <select (change)="selectedAccountToAdd($event.target.value)" class="form-control" id="sel1" [(ngModel)]="selAccount" name="selectAccount" #saccount="ngModel" required>
+                    <option class="info" value="Savings">Savings</option>
+                    <option class="info" value="CreditCard">Credit Card</option>
+                </select>
+            </div>
+            <h3> Enter Initial Balance:</h3>
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input [(ngModel)]="AvailableBalance" type="number" class="form-control" id="exampleInputAmount" placeholder="Amount" required pattern="^\$?(?!0\d)(?:\d+|\d{1,3}(?:,\d{1,3})*)(?:\.\d{2})?$">
+                </div>
+            </div>
+            <button class="button" name="Modify" [disabled]="!addAccountForm.valid" (click)="createUserAccount()">Add Account</button>
+        </div>
+        
+    </div>
+    <div *ngIf="addAccountMessage != ''" class="alert alert-success">
+    {{addAccountMessage}}
+        <button type="button" value="done" class="btn btn-primary" (click)="doneAccount()">Done</button>
+
+    </div>
+    <div *ngIf="invalidAccountCreation != ''" class="alert alert-warning">{{invalidAccountCreation}}</div>
+</form>

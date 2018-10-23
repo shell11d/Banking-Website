@@ -1,0 +1,284 @@
+<div *ngIf="!validOnlineAccount">
+    <h1> ADD NEW Employee INFORMATION</h1>
+    <br>
+    <form id="onlineuser-form" #onlineUserForm="ngForm" novalidate>
+        <div class="form-group">
+            <label for="Email Id"><h3>Email Id:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="emailId" ngControl="oemail" type="text" name="oemail" placeholder="Email ID" #oemail="ngModel" required pattern='^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$'>
+            </div>
+        </div>
+        <div [hidden]="oemail.valid || oemail.pristine" class="alert alert-danger">
+            <div *ngIf="oemail.errors && oemail.errors.required">
+                *Email ID is required
+            </div>
+            <div *ngIf="oemail.errors && oemail.errors.pattern">
+                Improper Email
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="ofirstName"><h3>First Name:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="firstName" ngControl="ofirstName" type="text" name="ofirstName" placeholder="First name" #ofirstName="ngModel" required pattern="^[a-z A-Z ,.'-]+$">
+            </div>
+        </div>
+
+        <div [hidden]="ofirstName.valid || ofirstName.pristine" class="alert alert-danger">
+            <div *ngIf="ofirstName.errors && ofirstName.errors.required">
+                *FirstName is required
+            </div>
+            <div *ngIf="ofirstName.errors && ofirstName.errors.pattern">
+                Improper First Name
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="ofirstName"><h3>Last Name:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="lastName" ngControl="olastName" type="text" name="olastName" placeholder="Last name" #olastName="ngModel" required pattern="^[a-z A-Z ,.'-]+$">
+            </div>
+        </div>
+
+        <div [hidden]="olastName.valid || olastName.pristine" class="alert alert-danger">
+            <div *ngIf="olastName.errors && olastName.errors.required">
+                *Last Name is required
+            </div>
+            <div *ngIf="olastName.errors && olastName.errors.pattern">
+                Improper Last Name
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="type"><h3>User Type:</h3></label>
+            <select class="form-control" id="type" [(ngModel)]="accounttype" name="type" #type="ngModel" required>
+                <option *ngFor="let aType of userRoles" [value]="aType">{{aType}}</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="newpass"><h3>Enter new password:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="password" ngControl="newpass" type="password" name="newpass" placeholder="New Password" #newpass="ngModel" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$">
+            </div>
+            <div [hidden]="newpass.valid || newpass.pristine" class="alert alert-danger">
+                <div *ngIf="newpass.errors && newpass.errors.required">*Passwrod is required</div>
+                <div *ngIf="newpass.errors && newpass.errors.pattern">Password rules: 8 chars,1 alpha,number, special char.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirmpass"><h3>Confirm new password:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="confirmPassword" ngControl="confirmpass" type="password" name="confirmpass" placeholder="Confirm Password" #confirmpass="ngModel" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$">
+            </div>
+        </div>
+        <div *ngIf="createError" class="alert alert-warning">{{createError}}</div>
+        <br>
+        <button class="button " type="button" [disabled]="!onlineUserForm.valid" (click)="createOnlineAccount()">Create Online Account</button>
+
+
+    </form>
+</div>
+
+
+
+<div class="container" *ngIf="validOnlineAccount">
+    <form id="form-login" (ngSubmit)="createBankAccount()" #createAccountForm="ngForm" novalidate>
+
+        <h3>Please fill in the following details to signup</h3>
+        <h3>Use the PSK for Google Authenticator: {{onlineResponse.preSharedKey}}</h3>
+
+
+        <div class="form-group">
+            <label for="firstname"><h3>FirstName:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="userProfile.firstName" ngControl="firstname" type="text" name="firstname" placeholder="First name" #firstname="ngModel" required pattern="^[a-z A-Z ,.'-]+$">
+            </div>
+        </div>
+
+        <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
+            <div *ngIf="firstname.errors && firstname.errors.required">
+                *FirstName is required
+            </div>
+            <div *ngIf="firstname.errors && firstname.errors.pattern">
+                Improper First Name
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastname"><h3>LastName:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="userProfile.lastName" ngControl="lastname" type="text" name="lastname" placeholder="Last name" #lastname="ngModel" required pattern="^[a-z A-Z ,.'-]+$">
+            </div>
+        </div>
+
+        <div [hidden]="lastname.valid || lastname.pristine" class="alert alert-danger">
+            <div *ngIf="lastname.errors && lastname.errors.required">
+                *LastName is required
+            </div>
+            <div *ngIf="lastname.errors && lastname.errors.pattern">
+                Improper Last Name
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="userType">User Type:</label>
+            <select class="form-control" id="userType" [(ngModel)]="userProfile.type" name="userType" #userType="ngModel" required>
+                <option *ngFor="let userRole of userRoles" [value]="userRole">{{userRole}}</option>
+            </select>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="ssn"><h3>Social Security Number:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="userProfile.ssn" ngControl="ssn" type="text" name="ssn" placeholder="SSN" #ssn="ngModel" required pattern="^(\d{3}-?\d{2}-?\d{4}|XXX-XX-XXXX)$">
+            </div>
+        </div>
+
+        <div [hidden]="ssn.valid || ssn.pristine" class="alert alert-danger">
+            <div *ngIf="ssn.errors && ssn.errors.required">
+                *SSN is required
+            </div>
+            <div *ngIf="ssn.errors && ssn.errors.pattern">
+                Improper SSN
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ssn"><h3>Contact Number:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="userProfile.phoneNumber" ngControl="phneNum" type="text" name="phneNum" placeholder="Phone Number" #phneNum="ngModel" required pattern="^(\([0-9]{3}\) |[0-9]{3})[0-9]{3}[0-9]{4}$">
+            </div>
+        </div>
+
+        <div [hidden]="phneNum.valid || phneNum.pristine" class="alert alert-danger">
+            <div *ngIf="phneNum.errors && phneNum.errors.required">
+                *Contact Number is required
+            </div>
+            <div *ngIf="phneNum.errors && phneNum.errors.pattern">
+                Improper Contact Number
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="dob"><h3>Date of Birth:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="userProfile.dateOfBirth" ngControl="dob" type="text" name="dob" placeholder="Date" #dob="ngModel" required pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$">
+            </div>
+        </div>
+
+        <div [hidden]="dob.valid || dob.pristine" class="alert alert-danger">
+            <div *ngIf="dob.errors && dob.errors.required">
+                *DOB is required
+            </div>
+            <div *ngIf="dob.errors && dob.errors.pattern">
+                Date Foramt must be mm/dd/yyyy
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="gender"><h3>Gender:</h3></label>
+            <div *ngFor="let gender of genders">
+                <label>
+                    <input type="radio" name="gender" [(ngModel)]="userProfile.gender" [value]="gender.value" required>
+                    {{gender.display}}
+                </label>
+            </div>
+        </div>
+
+        <div *ngIf="!userProfile.gender" class="alert alert-danger">
+            *Gender is required
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label for="address"><h3>Address:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="userProfile.address" ngControl="address" type="text" name="address" placeholder="Address" #address="ngModel" required pattern="^[A-Za-z0-9'\.\-\s\,]+$">
+            </div>
+        </div>
+
+        <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+            <div *ngIf="address.errors && address.errors.required">
+                *Address is required
+            </div>
+            <div *ngIf="address.errors && address.errors.pattern">
+                Address is in improper format.  No special Characters allowed
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="secQuestions1"><h3>Enter Security Question 1:</h3></label>
+            <input [(ngModel)]="securityProfile.securityQuestion1" ngControl="secQuestion1" type="text" name="secQuestions1" placeholder="Your Question" #secQuestion1="ngModel" required pattern="^[a-z A-Z ,.'-]+$" maxlength="50">
+        </div>
+        <div class="form-input">
+            <input [(ngModel)]="securityProfile.securityAnswer1" ngControl="answerone" type="text" name="answerone" placeholder="Your Answer" #answerone="ngModel" required pattern="^[a-z A-Z ,.'-]+$" maxlength="10">
+        </div>
+
+        <div [hidden]="answerone.valid || answerone.pristine" class="alert alert-danger">
+            <div *ngIf="answerone.errors && answerone.errors.required">
+                *Your answer is required
+            </div>
+            <div *ngIf="answerone.errors && answerone.errors.pattern">
+                Enter answer in proper format
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="secQuestions2"><h3>Enter Security Question 2:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="securityProfile.securityQuestion2" ngControl="secQuestion2" type="text" name="secQuestions2" placeholder="Your Answer" #secQuestion2="ngModel" required pattern="^[a-z A-Z ,.'-]+$" maxlength="50">
+            </div>
+        </div>
+
+        <div class="form-input">
+            <input [(ngModel)]="securityProfile.securityAnswer2" ngControl="answertwo" type="text" name="answertwo" placeholder="Your Answer" #answertwo="ngModel" required pattern="^[a-z A-Z ,.'-]+$" maxlength="10">
+        </div>
+
+        <div [hidden]="answertwo.valid || answertwo.pristine" class="alert alert-danger">
+            <div *ngIf="answertwo.errors && answertwo.errors.required">
+                *Your answer is required
+            </div>
+            <div *ngIf="answertwo.errors && answertwo.errors.pattern">
+                Enter answer in proper format
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="secQuestions3"><h3>Enter Security Question 3:</h3></label>
+            <div class="form-input">
+                <input [(ngModel)]="securityProfile.securityQuestion3" ngControl="secQuestion3" type="text" name="secQuestions3" placeholder="Your Answer" #secQuestion3="ngModel" required pattern="^[a-z A-Z ,.'-]+$" maxlength="50">
+            </div>
+        </div>
+
+        <div class="form-input">
+            <input [(ngModel)]="securityProfile.securityAnswer3" ngControl="answerthree" type="text" name="answerthree" placeholder="Your Answer" #answerthree="ngModel" required pattern="^[a-z A-Z ,.'-]+$" maxlength="10">
+        </div>
+
+        <div [hidden]="answerthree.valid || answerthree.pristine" class="alert alert-danger">
+            <div *ngIf="answerthree.errors && answerthree.errors.required">
+                *Your answer is required
+            </div>
+            <div *ngIf="answerthree.errors && answerthree.errors.pattern">
+                Enter answer in proper format
+            </div>
+        </div>
+        <div *ngIf="createAccountError" class="alert alert-warning">{{createAccountError}}</div>
+        <div *ngIf="createMessage" class="alert alert-success">
+            {{createMessage}}
+            <button type="button" value="done" class="btn btn-primary" (click)="doneAccount()">Done</button>
+        </div>
+        <div *ngIf="!createMessage" class="alert alert-success">
+            <button type="submit" name="submit" value="createAccount" class="btn btn-primary" [disabled]="!createAccountForm.valid">Create Account</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,62 @@
+<div id="fund-transfer-container">
+
+	<h2>Fund Transfer</h2>
+	<h3>Select your account you want to send your money from:</h3>
+
+	<form (ngSubmit)="onSubmit()" #fundTransferForm="ngForm">
+		<div id="payee" class="dropdown">
+            <select class="form-control" id="selectAccount" [(ngModel)]="selectedAccountId" name="selectAccount" #selectAccount="ngModel" required>
+                <option *ngFor="let account of accounts" [value]="account.accountId">
+                    {{account.accountId}}
+                </option>
+            </select>
+		</div>
+
+		<h3 align="left">How do you want to send the money:</h3>
+		<input #account type="radio" name="beneficiary" checked (click)="transferType = TransferType.Account"> Account number<br>
+		<input #mobile type="radio" name="beneficiary" (click)="transferType = TransferType.Mobile"> Mobile no<br>
+		<input #email type="radio" name="beneficiary" (click)="transferType = TransferType.Email"> Email
+		<div [ngSwitch]="transferType">
+			<div *ngSwitchCase="TransferType.Mobile">
+				<h3 align="left">Enter the mobile number of the payee:</h3>
+				<input type="number" name="mobileNumber" required [(ngModel)]="receiverDetails" #mobileNumber="ngModel" pattern="[0-9]{10}">
+				<div [hidden]="mobileNumber.valid || mobileNumber.pristine" class="alert alert-danger">
+					Enter 10 digit mobile number
+				</div>
+			</div>
+            <div *ngSwitchCase="TransferType.Email">
+				<h3 align="left">Enter the email address of the payee:</h3>
+				<input type="text" name="email" required [(ngModel)]="receiverDetails" #email="ngModel" pattern='^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$'>
+				<div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+					Invalid Email
+				</div>
+			</div>
+			<div *ngSwitchCase="TransferType.Account">
+				<h3 align="left">Enter the account number of the payee:</h3>
+				<input type="number" name="accountNumber" required [(ngModel)]="receiverDetails" #accountNumber="ngModel" pattern="[0-9]{5}">
+				<div [hidden]="accountNumber.valid || accountNumber.pristine" class="alert alert-danger">
+					Enter 5 digit account number
+				</div>
+			</div>
+		</div>
+
+		<h3>Enter the amount to be sent:</h3>
+		<input type="number" name="amountValue" required [(ngModel)]="amount" #amountValue="ngModel">
+		<div [hidden]="amountValue.valid || amountValue.pristine" class="alert alert-danger">
+			Invalid number
+		</div>
+        <br />
+        <input type="text" name="descriptionText" required [(ngModel)]="description" #descriptionText="ngModel" pattern="^[a-z A-Z 0-9]+$" maxlength="50">
+        <div [hidden]="descriptionText.valid || descriptionText.pristine" class="alert alert-danger">
+            Invalid description
+        </div>
+        <br />
+        <input type="number" name="otpText" required [(ngModel)]="otp" #otpText="ngModel" pattern="[0-9]{6}">
+        <div [hidden]="otpText.valid || otpText.pristine" class="alert alert-danger">
+            Invalid description
+        </div>
+		<br><br>
+
+		<button type="submit" [disabled]="!fundTransferForm.form.valid">Submit</button>
+	</form>
+</div>

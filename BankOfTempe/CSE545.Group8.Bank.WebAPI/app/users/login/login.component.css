@@ -1,0 +1,112 @@
+.container
+{
+    width: 500px;
+   background-color: #E2DEDD;
+    text-align: center;
+    border-radius: 25px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid black;
+    opacity: 0.8;
+    position:relative
+}
+
+.container img
+{
+    width: 270px;
+    height: 90px;
+    margin-top: -60px;
+    margin-bottom:30px;
+    border-radius: 5px;
+
+}
+img {
+    
+    margin: 0 auto;
+}
+
+#form-login
+{
+    padding-top: 50px;
+}
+
+#login
+{
+    width: 100%;
+    height: 100%;
+    background-image: url("assets/images/welcome_page.jpg");
+    background-repeat: no-repeat;
+    background-size:  100% 100%;
+}
+
+input
+{
+    height:10px;
+    width:300px;
+    font-size:18px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+    padding-left:30px;
+}
+
+input[type=text] {
+    height:45px;
+    width:300px;
+    font-size:18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background-color: #fff;
+    padding-left:30px;
+    
+}
+
+
+input[type=password] {
+    height:45px;
+    width:300px;
+    font-size:18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background-color: #fff;
+    padding-left:30px;
+    
+}
+
+input[type=checkbox] {
+    font-size:18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background-color: #fff;
+    float: left;
+    height: 20px;
+    width: 20px;
+    
+}
+
+
+.btn-forgotpassword
+{
+    background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     border-bottom:1px solid #444; 
+     cursor: pointer;
+}
+
+
+footer {
+      background-color: #5D5D61;
+      padding: 13px;
+      text-align :center;
+font-style:bold;
+	font-size:175%;
+color :white;}
+
+li {
+    display: inline;
+}

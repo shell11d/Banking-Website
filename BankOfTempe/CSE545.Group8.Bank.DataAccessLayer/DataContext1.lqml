@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="bankofasu" EntityNamespace="BankofasuContext" ContextNamespace="BankofasuContext" Class="BankofasuDataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="1cc0b0d0-55f1-477e-b96b-3414abf30595" Provider="Devart.Data.MySql.Linq.Provider.MySqlDataProvider, Devart.Data.MySql.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="User Id=root;Password=bringiton;Host=localhost;Database=bankofasu;Persist Security Info=True" Provider="Devart.Data.MySql" />
+  <Table Name="bankofasu.`__migrationhistory`" Member="Migrationhistories">
+    <Type Name="Migrationhistory" ed:Guid="2c50d8fc-387f-4984-b391-61dd6f8f6280">
+      <Column Name="MigrationId" Type="System.String" DbType="VARCHAR(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="150" Unicode="true" ed:ValidateMaxLength="150" ed:ValidateRequired="true" ed:Guid="18674cd1-aef3-4865-9266-2da352e9b8ac" />
+      <Column Name="ContextKey" Type="System.String" DbType="VARCHAR(300) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="300" Unicode="true" ed:ValidateMaxLength="300" ed:ValidateRequired="true" ed:Guid="45a87746-aed8-47ca-86a7-e643d41c3b87" />
+      <Column Name="Model" Type="System.Byte[]" DbType="LONGBLOB NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="d3819c29-72e7-4fd9-b95d-1dc2cc1c909a" />
+      <Column Name="ProductVersion" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="b8e4a7ed-61e2-4a82-8d7e-c3f30e6bef5d" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.account" Member="Accounts">
+    <Type Name="Account" ed:Guid="22339361-b3e9-4d17-92c6-2b235e198d9d">
+      <Column Name="Account_id" Member="AccountId" Type="System.Int32" AutoSync="OnInsert" DbType="INT(8) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="8" ed:ValidateRequired="true" ed:Guid="813fec61-7378-446d-bb5a-adb672b5ff6d" />
+      <Column Name="Account_type" Member="AccountType" Type="System.String" DbType="VARCHAR(45) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="e511b4cb-4230-4e00-9d5a-63278e6a0701" />
+      <Column Name="Available_balance" Member="AvailableBalance" Type="System.Decimal" DbType="DECIMAL(10,2) NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="0.00" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="ec2d61f6-984c-430a-960f-e47c7b385372" />
+      <Column Name="Created_on" Member="CreatedOn" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="e56b3536-0b21-4f08-b9a4-423be9b990b3" />
+      <Column Name="Closing_dt" Member="ClosingDt" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="e4a19ee3-d734-4f7c-a940-4418d2209147" />
+      <Column Name="Status" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="'Active'" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="d67f64ff-02bd-43df-aece-6f5b086e6d44" />
+      <Column Name="Customer_id" Member="CustomerId" Type="System.String" DbType="VARCHAR(128) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="8e7a5118-c6b3-402f-bf17-9fbdd71135f1" />
+      <Association Name="CustomerInfo_Account" ed:AssociationGuid="d6c2d75c-80fa-4d0a-8d52-3cf59644bfc0" Member="CustomerInfo" ed:Guid="f34f1204-10d5-4fef-aada-b20a1671f337" ThisKey="CustomerId" OtherKey="Id" Type="CustomerInfo" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="Account_CreditcardDetail" ed:AssociationGuid="33ea6702-8c0b-4f3f-9dcd-39ee040601dc" Member="CreditcardDetails" ed:Guid="8a829f96-916b-4574-87ae-55d656c6a72e" ThisKey="AccountId" OtherKey="AccountId" Type="CreditcardDetail" />
+      <Association Name="Account_Debitcard" ed:AssociationGuid="663af1f2-1a9d-4a4f-b3fb-30905cd13fa2" Member="Debitcards" ed:Guid="7875001b-e6d3-4724-955f-00750e02fec1" ThisKey="AccountId" OtherKey="AccountId" Type="Debitcard" />
+      <Association Name="Account_Transaction" ed:AssociationGuid="37d53fca-ac56-4da9-9562-9c23d8ec125c" Member="Transactions" ed:Guid="0f4b17aa-a9f9-459f-99f2-8714c7bd122e" ThisKey="AccountId" OtherKey="AccountId" Type="Transaction" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.aspnetroles" Member="Aspnetroles">
+    <Type Name="Aspnetrole" ed:Guid="57d54700-fc30-436e-bb7c-b4f3f6cd17d7">
+      <Column Name="Id" Type="System.String" DbType="VARCHAR(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="c3d3341c-7dfc-4119-8d90-9f815d559af8" />
+      <Column Name="Name" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="fc11c5e2-7341-47fc-aada-5adfeec26ec7" />
+      <Association Name="Aspnetrole_Aspnetuser" ed:AssociationGuid="6cc51444-16b3-4354-a233-fca543144ae0" Member="Aspnetusers" ed:Guid="eba4fcbc-e056-4cb5-b413-3de5b6d29353" ThisKey="Id" OtherKey="Id" Type="Aspnetuser" LinkTableName="bankofasu.aspnetuserroles" LinkThisKey="RoleId" LinkOtherKey="UserId" Cardinality="Many" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.aspnetuserclaims" Member="Aspnetuserclaims">
+    <Type Name="Aspnetuserclaim" ed:Guid="2232f8f5-8b31-4e9a-a63a-d3c7e6543e2c">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT(11) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="11" ed:ValidateRequired="true" ed:Guid="8c266e44-87f1-4c31-9a90-a2d10589e3dd" />
+      <Column Name="UserId" Type="System.String" DbType="VARCHAR(128) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="b0c7ea5b-8101-464b-895b-6e627ab8e1fe" />
+      <Column Name="ClaimType" Type="System.String" DbType="LONGTEXT NULL" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="987e7752-c5ee-47e2-b068-66fbf9cee7e3" />
+      <Column Name="ClaimValue" Type="System.String" DbType="LONGTEXT NULL" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="9dc541b8-cf5c-4674-986f-eb8bab102770" />
+      <Association Name="Aspnetuser_Aspnetuserclaim" ed:AssociationGuid="992946d3-ea31-404e-9ed7-a9d2caaea5ef" Member="Aspnetuser" ed:Guid="7faf03a9-4add-47b3-9f37-6316979d804d" ThisKey="UserId" OtherKey="Id" Type="Aspnetuser" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.aspnetuserlogins" Member="Aspnetuserlogins">
+    <Type Name="Aspnetuserlogin" ed:Guid="dfb68c5e-0a52-44dc-9e6a-5952c7f05113">
+      <Column Name="LoginProvider" Type="System.String" DbType="VARCHAR(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="cdb785e2-8c4d-480e-8699-7e5b04b33ec7" />
+      <Column Name="ProviderKey" Type="System.String" DbType="VARCHAR(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="d75e3f1c-4474-494e-a1b6-9c88ef6b3f58" />
+      <Column Name="UserId" Type="System.String" DbType="VARCHAR(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="aa74fa9d-9bb9-432d-80ee-1802636c59b0" />
+      <Association Name="Aspnetuser_Aspnetuserlogin" ed:AssociationGuid="64acfb77-7167-4dc9-89d6-a010a8bbb5b5" Member="Aspnetuser" ed:Guid="c40147a9-dcd4-4795-bb51-238ebe4a975f" ThisKey="UserId" OtherKey="Id" Type="Aspnetuser" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.aspnetusers" Member="Aspnetusers">
+    <Type Name="Aspnetuser" ed:Guid="12451b1e-5251-48c9-a94a-3025b9381fa0">
+      <Column Name="Id" Type="System.String" DbType="VARCHAR(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="a3bdaa34-53b8-4295-97a9-2d327c05d87e" />
+      <Column Name="FirstName" Type="System.String" DbType="VARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="9baee17a-cf4a-4a4b-aa31-0f958acc776e" />
+      <Column Name="LastName" Type="System.String" DbType="VARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="da7bcf17-e1dc-45e2-9238-802bd3dae17a" />
+      <Column Name="PSK" Type="System.String" DbType="VARCHAR(16) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="16" Unicode="true" ed:ValidateMaxLength="16" ed:ValidateRequired="true" ed:Guid="3af4b303-983f-4a38-b06d-3ade80630a42" />
+      <Column Name="Email" Type="System.String" DbType="VARCHAR(256) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="140f6c8d-ac26-4a38-91d5-2ac5c56295b6" />
+      <Column Name="EmailConfirmed" Type="System.Boolean" DbType="TINYINT(1) NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="cafbfdaf-0339-4f1c-9ee6-22fe9deeb697" />
+      <Column Name="PasswordHash" Type="System.String" DbType="LONGTEXT NULL" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="f807dadf-a9c4-4b08-bb6a-118ce3c4c16f" />
+      <Column Name="SecurityStamp" Type="System.String" DbType="LONGTEXT NULL" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="2807b54f-3f70-4c90-b4b7-c1455f7d0357" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="LONGTEXT NULL" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="be77d749-d31a-40ad-b8ea-f00505aa4f70" />
+      <Column Name="PhoneNumberConfirmed" Type="System.Boolean" DbType="TINYINT(1) NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="168c11b4-8b3e-436a-89b2-0a88c018f625" />
+      <Column Name="TwoFactorEnabled" Type="System.Boolean" DbType="TINYINT(1) NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="9c1ebc7e-3a97-410e-866f-6789b1bcfaf1" />
+      <Column Name="LockoutEndDateUtc" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="3712680a-d6d0-44ec-9041-1d023b70f139" />
+      <Column Name="LockoutEnabled" Type="System.Boolean" DbType="TINYINT(1) NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="32244a7e-1336-46e1-affc-715f4f85f489" />
+      <Column Name="AccessFailedCount" Type="System.Int32" DbType="INT(11) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="11" ed:ValidateRequired="true" ed:Guid="240713fa-2fcf-4b49-b4dd-b2db50d69e44" />
+      <Column Name="UserName" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="5a8e6bf0-62af-4b48-90fe-463911650921" />
+      <Association Name="Aspnetrole_Aspnetuser" ed:AssociationGuid="6cc51444-16b3-4354-a233-fca543144ae0" Member="Aspnetroles" ed:Guid="38cdabf8-97fb-47d9-9659-9640f2e32974" ThisKey="Id" OtherKey="Id" Type="Aspnetrole" LinkTableName="bankofasu.aspnetuserroles" LinkThisKey="UserId" LinkOtherKey="RoleId" IsForeignKey="true" Cardinality="Many" />
+      <Association Name="Aspnetuser_Aspnetuserclaim" ed:AssociationGuid="992946d3-ea31-404e-9ed7-a9d2caaea5ef" Member="Aspnetuserclaims" ed:Guid="f545d056-c3d9-43d1-8b1b-1e42394c9535" ThisKey="Id" OtherKey="UserId" Type="Aspnetuserclaim" />
+      <Association Name="Aspnetuser_Aspnetuserlogin" ed:AssociationGuid="64acfb77-7167-4dc9-89d6-a010a8bbb5b5" Member="Aspnetuserlogins" ed:Guid="09879a53-b0b4-4c0f-8a6f-1025747df8dd" ThisKey="Id" OtherKey="UserId" Type="Aspnetuserlogin" />
+      <Association Name="Aspnetuser_CustomerInfo" ed:AssociationGuid="f355c49d-a626-411c-aceb-f281fe473c73" Member="CustomerInfo" ed:Guid="9cb4d76f-45a8-45db-990f-1a83c781a333" ThisKey="Id" OtherKey="Id" Type="CustomerInfo" Cardinality="One" />
+      <Association Name="Aspnetuser_EmployeeInfo" ed:AssociationGuid="3e86d5a8-f506-4631-9954-01c71f42b880" Member="EmployeeInfo" ed:Guid="2e825937-7faf-4833-b89d-422d9f59b8c9" ThisKey="Id" OtherKey="Id" Type="EmployeeInfo" Cardinality="One" />
+      <Association Name="Aspnetuser_UserSecurityQuestion" ed:AssociationGuid="8465bf49-b1bf-4de9-94c4-510f9340a253" Member="UserSecurityQuestion" ed:Guid="c77d89d2-abb2-46ce-8b10-95b73cefb15e" ThisKey="Id" OtherKey="Id" Type="UserSecurityQuestion" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.creditcard_details" Member="CreditcardDetails">
+    <Type Name="CreditcardDetail" ed:Guid="acad4ca5-a002-4b08-9656-6f5971fe9bb9">
+      <Column Name="CreditCard_Num" Member="CreditCardNum" Type="System.Int32" AutoSync="OnInsert" DbType="INT(16) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="16" ed:ValidateRequired="true" ed:Guid="aed62a29-c27a-4546-a007-bf693e0cf504" />
+      <Column Name="Account_id" Member="AccountId" Type="System.Int32" DbType="INT(8) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="8" ed:ValidateRequired="true" ed:Guid="b2d2caf5-5318-44ce-9d62-6f1dac661fa0" />
+      <Column Name="Customer_id" Member="CustomerId" Type="System.String" DbType="VARCHAR(128) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="0849d5a4-a03c-4e03-86fc-50aca34a186d" />
+      <Column Name="Credit_Limit" Member="CreditLimit" Type="System.Decimal" DbType="DECIMAL(10,2) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="c14cc906-2509-42b9-a9e8-6553ff6e6f9d" />
+      <Column Name="Start_date" Member="StartDate" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="348c7d40-d1fe-4d67-9fa4-8a2185353f2a" />
+      <Column Name="Expiry_dt" Member="ExpiryDt" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="f11b6c7a-a259-4e29-9ea4-9074fe4e6132" />
+      <Column Name="Monthly_statement_end_dt" Member="MonthlyStatementEndDt" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="8fa865c8-a6b2-4954-920a-5f84b745b78d" />
+      <Column Name="status" Member="Status" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="92f5db92-2ac8-4773-bf16-57ee5e941c7a" />
+      <Column Name="CVV" Type="System.Int32" DbType="INT(3) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="3" ed:ValidateRequired="true" ed:Guid="4053d296-dab4-4b5f-9b73-92f810de1da6" />
+      <Column Name="Name" Type="System.String" DbType="VARCHAR(200) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="true" ed:Guid="c8532e1e-e49c-4942-b630-6f78496d0d77" />
+      <Association Name="Account_CreditcardDetail" ed:AssociationGuid="33ea6702-8c0b-4f3f-9dcd-39ee040601dc" Member="Account" ed:Guid="549b4c9c-ebcc-4ca5-8d17-bf57f0459f1e" ThisKey="AccountId" OtherKey="AccountId" Type="Account" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="CustomerInfo_CreditcardDetail" ed:AssociationGuid="0b7dfd40-7d13-426c-baf5-95403b3ede83" Member="CustomerInfo" ed:Guid="c1c8629c-4c01-4216-810a-08c6fd4a827c" ThisKey="CustomerId" OtherKey="Id" Type="CustomerInfo" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="CreditcardDetail_CreditcardTransaction" ed:AssociationGuid="fae55d45-8b9d-4ea2-a0b2-f2c7fff168cc" Member="CreditcardTransaction" ed:Guid="c8571dc7-6f2a-4413-8605-fa194853ec38" ThisKey="CreditCardNum" OtherKey="CreditCardNum" Type="CreditcardTransaction" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.creditcard_transactions" Member="CreditcardTransactions">
+    <Type Name="CreditcardTransaction" ed:Guid="39defb58-94c1-4a8d-83da-188276a2e695">
+      <Column Name="CreditCard_Num" Member="CreditCardNum" Type="System.Int32" DbType="INT(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="16" ed:ValidateRequired="true" ed:Guid="bf81cbb0-edaa-4a80-872e-bd4ae5d412c5" />
+      <Column Name="Credit_balance" Member="CreditBalance" Type="System.Decimal" DbType="DECIMAL(10,2) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="cecb4ff1-8f8c-4c93-9b71-fc84afaede7b" />
+      <Column Name="Last_Payment_dt" Member="LastPaymentDt" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="81960acc-e93e-42c8-9ad9-073ec8958cdd" />
+      <Column Name="Last_payment_amt" Member="LastPaymentAmt" Type="System.Decimal" DbType="DECIMAL(10,2) NULL" CanBeNull="true" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="false" ed:Guid="b6ab4179-c705-4429-b763-fe36c50fe232" />
+      <Column Name="Next_payment_dt" Member="NextPaymentDt" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="f0a3e716-a48a-4763-980b-fa35b93c6a81" />
+      <Column Name="Monthly_statement_balance" Member="MonthlyStatementBalance" Type="System.Decimal" DbType="DECIMAL(10,2) NULL" CanBeNull="true" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="false" ed:Guid="a93f50b6-e2c2-49d5-9df4-ce3dbbf1526d" />
+      <Column Name="Next_payment_due" Member="NextPaymentDue" Type="System.Decimal" DbType="DECIMAL(10,2) NULL" CanBeNull="true" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="false" ed:Guid="010c72bf-850c-49ce-babe-40920f294926" />
+      <Column Name="Min_pay_due" Member="MinPayDue" Type="System.Decimal" DbType="DECIMAL(10,2) NULL" CanBeNull="true" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="false" ed:Guid="0e336473-831c-4501-adc1-42727ed7a69b" />
+      <Column Name="Last_Updated_dt" Member="LastUpdatedDt" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="b3e458cf-3e95-4ec5-bc7b-49ea0d4bce22" />
+      <Column Name="Monthly_statement_end_dt" Member="MonthlyStatementEndDt" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="7fe08015-2e1a-4caa-ba6f-b7d960324b78" />
+      <Association Name="CreditcardDetail_CreditcardTransaction" ed:AssociationGuid="fae55d45-8b9d-4ea2-a0b2-f2c7fff168cc" Member="CreditcardDetail" ed:Guid="ff1abca9-c7f2-4a44-9fd8-796ee4a76fbe" ThisKey="CreditCardNum" OtherKey="CreditCardNum" Type="CreditcardDetail" DeleteRule="NO ACTION" IsForeignKey="true" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.customer_info" Member="CustomerInfos">
+    <Type Name="CustomerInfo" ed:Guid="915a531b-fb85-460c-a8b7-6e90a8758efe">
+      <Column Name="Id" Type="System.String" DbType="VARCHAR(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="bb4d49e8-2c14-4e7d-8f8a-06b4b480cb81" />
+      <Column Name="First_name" Member="FirstName" Type="System.String" DbType="VARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="887524f5-7527-46a3-b799-487d54a4938b" />
+      <Column Name="Last_name" Member="LastName" Type="System.String" DbType="VARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="07ce229c-42a6-4c2e-9f13-5eef7d0fee59" />
+      <Column Name="Full_name" Member="FullName" Type="System.String" DbType="VARCHAR(200) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="2d5a8090-56da-41bf-b059-f480eb62e174" />
+      <Column Name="Type" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="a9c5f768-580e-4bae-b1cc-d2fd66d3eef1" />
+      <Column Name="DOB" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="73f109cc-38f6-4e39-b8aa-8a862835a57d" />
+      <Column Name="Gender" Type="System.String" DbType="VARCHAR(32) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="false" ed:Guid="1ec64253-d886-4dbe-8481-1e9ca29c6744" />
+      <Column Name="SSN" Type="System.Int32" DbType="INT(10) NULL" CanBeNull="true" UpdateCheck="Never" Precision="10" ed:ValidateRequired="false" ed:Guid="ebe29ea5-8f88-4961-827d-581e6537b1bf" />
+      <Column Name="Joining_dt" Member="JoiningDt" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="5e06cb65-9dd7-4d5c-92e9-5807698f410a" />
+      <Column Name="Status" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="'Active'" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="4a0f9c09-e6d0-4792-84c4-981443ddbbfa" />
+      <Column Name="Email" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="29a0dc01-e746-4135-b633-d6de57c162ef" />
+      <Column Name="Phone" Type="System.String" DbType="VARCHAR(16) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="16" Unicode="true" ed:ValidateMaxLength="16" ed:ValidateRequired="true" ed:Guid="782604ee-7b3e-456f-95d3-e4579a4fb961" />
+      <Column Name="Address" Type="System.String" DbType="VARCHAR(150) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="150" Unicode="true" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="67611b6d-0385-4f9d-bd77-3035af96f50c" />
+      <Association Name="CustomerInfo_Account" ed:AssociationGuid="d6c2d75c-80fa-4d0a-8d52-3cf59644bfc0" Member="Accounts" ed:Guid="5f6113ee-e629-4190-ab51-0675db978bce" ThisKey="Id" OtherKey="CustomerId" Type="Account" />
+      <Association Name="Aspnetuser_CustomerInfo" ed:AssociationGuid="f355c49d-a626-411c-aceb-f281fe473c73" Member="Aspnetuser" ed:Guid="043e3079-9871-4c5c-a75d-83b50585fc62" ThisKey="Id" OtherKey="Id" Type="Aspnetuser" DeleteRule="NO ACTION" IsForeignKey="true" Cardinality="One" />
+      <Association Name="CustomerInfo_CreditcardDetail" ed:AssociationGuid="0b7dfd40-7d13-426c-baf5-95403b3ede83" Member="CreditcardDetails" ed:Guid="0a2ec3b1-acdd-479e-91e3-23ccecc3c1f4" ThisKey="Id" OtherKey="CustomerId" Type="CreditcardDetail" />
+      <Association Name="CustomerInfo_Debitcard" ed:AssociationGuid="f2a95bcf-540b-4af1-8f00-dbe82c998f61" Member="Debitcards" ed:Guid="7c5965b3-4687-494c-954d-6d44f6c9ee9a" ThisKey="Id" OtherKey="CustomerId" Type="Debitcard" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.debitcard" Member="Debitcards">
+    <Type Name="Debitcard" ed:Guid="f7bfdbf7-a338-4fa1-82c2-313e33d26be5">
+      <Column Name="DebitCard_Number" Member="DebitCardNumber" Type="System.Int32" AutoSync="OnInsert" DbType="INT(16) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="16" ed:ValidateRequired="true" ed:Guid="52c72ec2-abce-4bd0-b312-023837be9dbb" />
+      <Column Name="Account_id" Member="AccountId" Type="System.Int32" DbType="INT(8) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="8" ed:ValidateRequired="true" ed:Guid="cccbdf66-c506-40b0-85f9-9bf7c30a81ed" />
+      <Column Name="Customer_id" Member="CustomerId" Type="System.String" DbType="VARCHAR(128) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="37405b3b-9bb4-456b-bffd-1dd60bbfa7aa" />
+      <Column Name="Name" Type="System.String" DbType="VARCHAR(200) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="true" ed:Guid="a746f261-9d89-4ec1-bcf0-c1d17a8e2391" />
+      <Column Name="Date_of_expiry" Member="DateOfExpiry" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="8f6e0228-a9ba-4f86-bbea-70cf1cae0b63" />
+      <Column Name="Date_of_joining" Member="DateOfJoining" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="d38b04ab-c06a-46b5-9fab-334d803dea9e" />
+      <Column Name="Status" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="'Active'" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="59119a30-8a10-4583-ba44-3398b9e0d1f3" />
+      <Column Name="CVV" Type="System.Int32" DbType="INT(3) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="3" ed:ValidateRequired="true" ed:Guid="5d731953-9dea-4a43-a6e8-14948d1380a7" />
+      <Association Name="Account_Debitcard" ed:AssociationGuid="663af1f2-1a9d-4a4f-b3fb-30905cd13fa2" Member="Account" ed:Guid="53c88278-f614-4c4e-97a1-9fa419bdd3c9" ThisKey="AccountId" OtherKey="AccountId" Type="Account" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="CustomerInfo_Debitcard" ed:AssociationGuid="f2a95bcf-540b-4af1-8f00-dbe82c998f61" Member="CustomerInfo" ed:Guid="d1c7b1ab-691b-46db-a35a-364384062290" ThisKey="CustomerId" OtherKey="Id" Type="CustomerInfo" DeleteRule="NO ACTION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.employee_info" Member="EmployeeInfos">
+    <Type Name="EmployeeInfo" ed:Guid="1e950c8f-887a-44b1-8345-767422890b36">
+      <Column Name="Id" Type="System.String" DbType="VARCHAR(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="4a5292b9-3b5e-406d-b63a-40612a056db3" />
+      <Column Name="First_name" Member="FirstName" Type="System.String" DbType="VARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="032811df-e890-4d4c-8e8e-e81f2ecc3bb3" />
+      <Column Name="Last_name" Member="LastName" Type="System.String" DbType="VARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="54b387f7-5bbb-42f1-bc0c-f743b075b30c" />
+      <Column Name="Full_name" Member="FullName" Type="System.String" DbType="VARCHAR(200) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="31880450-bc5a-41bc-9e16-7f8787fd3614" />
+      <Column Name="Type" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="4d5edad5-c078-4eef-b350-cc815a4a731a" />
+      <Column Name="DOB" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="fadea265-1a26-4f9e-9b20-d071b28af002" />
+      <Column Name="Gender" Type="System.String" DbType="VARCHAR(32) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="false" ed:Guid="d18e5a8c-0a23-4eb9-b5e9-4e7ec3cb25ec" />
+      <Column Name="SSN" Type="System.Int32" DbType="INT(10) NULL" CanBeNull="true" UpdateCheck="Never" Precision="10" ed:ValidateRequired="false" ed:Guid="37882d09-186c-40cf-a798-e63567688f02" />
+      <Column Name="Joining_dt" Member="JoiningDt" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="0f8cdb0d-353e-4376-9f04-2b8049cab5e1" />
+      <Column Name="Status" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="'N'" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="e0158d2a-c99b-4ddb-bec4-0a8f81da4ed9" />
+      <Column Name="Email" Type="System.String" DbType="VARCHAR(45) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="d288a9af-64d5-4b8a-be01-3e68269c9e90" />
+      <Column Name="Phone" Type="System.String" DbType="VARCHAR(16) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="16" Unicode="true" ed:ValidateMaxLength="16" ed:ValidateRequired="true" ed:Guid="633b9f69-600e-474e-92ac-d666edfdc46f" />
+      <Column Name="Address" Type="System.String" DbType="VARCHAR(150) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="150" Unicode="true" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="ae31e4e9-a4c1-460a-bf94-213ff1f789f4" />
+      <Association Name="Aspnetuser_EmployeeInfo" ed:AssociationGuid="3e86d5a8-f506-4631-9954-01c71f42b880" Member="Aspnetuser" ed:Guid="ac012a0a-077f-4e6a-9161-406b1701cbf4" ThisKey="Id" OtherKey="Id" Type="Aspnetuser" DeleteRule="NO ACTION" IsForeignKey="true" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.system_log" Member="SystemLogs">
+    <Type Name="SystemLog" ed:Guid="97618d30-c234-4879-b43a-9b88ec31324b">
+      <Column Name="log_id" Member="LogId" Type="System.Int32" AutoSync="OnInsert" DbType="INT(10) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="b6a54dcb-e1ad-4fc8-8d3b-635278222858" />
+      <Column Name="Description" Type="System.String" DbType="VARCHAR(256) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="e4fac8f1-9b2c-470f-9f04-ecc942447854" />
+      <Column Name="`Time`" Member="Time" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="b0296a04-53ac-496c-88f2-9956ffbf1b3e" />
+      <Column Name="user_id" Member="UserId" Type="System.String" DbType="VARCHAR(45) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="f13915ab-1098-4418-8b94-7058d553066d" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.transaction" Member="Transactions">
+    <Type Name="Transaction" ed:Guid="c5afd823-9f6e-4491-b6b6-9c96290936aa">
+      <Column Name="Transaction_id" Member="TransactionId" Type="System.Int32" AutoSync="OnInsert" DbType="INT(8) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="8" ed:ValidateRequired="true" ed:Guid="eb6e3fca-ca8f-4e95-a544-1f89a63e4459" />
+      <Column Name="Account_id" Member="AccountId" Type="System.Int32" DbType="INT(8) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="8" ed:ValidateRequired="true" ed:Guid="65b391b3-6e38-4509-9660-80f04b978018" />
+      <Column Name="Transaction_type" Member="TransactionType" Type="System.String" DbType="VARCHAR(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="410f4a18-91fc-4a17-9938-ed57c506db3d" />
+      <Column Name="Transaction_date" Member="TransactionDate" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="69abedd5-3dce-47aa-9141-f9ba8eca5d13" />
+      <Column Name="Description" Type="System.String" DbType="VARCHAR(500) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="500" Unicode="true" ed:ValidateMaxLength="500" ed:ValidateRequired="false" ed:Guid="b10c3df7-2be2-4fe8-9ec2-57180885adc0" />
+      <Column Name="Amount" Type="System.Decimal" DbType="DECIMAL(10,2) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="fda0dc36-a219-4660-989c-26c12ad07d64" />
+      <Column Name="Transaction_Method" Member="TransactionMethod" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="20" Unicode="true" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="19186be1-0a3b-4e51-806b-109289dfb2a0" />
+      <Column Name="Approval_status" Member="ApprovalStatus" Type="System.String" DbType="VARCHAR(32) NULL" CanBeNull="true" UpdateCheck="Never" DefaultValue="'Pending'" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="false" ed:Guid="bd3ea2c8-e924-4411-811a-916822cd7af4" />
+      <Column Name="Critical" Type="System.Boolean" DbType="TINYINT(1) NULL" CanBeNull="true" UpdateCheck="Never" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="de094aa6-802d-42ad-a7dd-89905f929e05" />
+      <Column Name="Status" Type="System.String" DbType="VARCHAR(32) NULL" CanBeNull="true" UpdateCheck="Never" DefaultValue="'Processing'" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="false" ed:Guid="847fd2f9-cc09-4000-b8d1-dd6409b148fd" />
+      <Column Name="Transfer_to" Member="TransferTo" Type="System.Int32" DbType="INT(8) NULL" CanBeNull="true" UpdateCheck="Never" Precision="8" ed:ValidateRequired="false" ed:Guid="c4add22d-7e60-43bf-a558-64d61436edf9" />
+      <Column Name="Transfer_from" Member="TransferFrom" Type="System.Int32" DbType="INT(8) NULL" CanBeNull="true" UpdateCheck="Never" Precision="8" ed:ValidateRequired="false" ed:Guid="080e1578-0d41-45b1-ba36-e5fddcacc976" />
+      <Association Name="Account_Transaction" ed:AssociationGuid="37d53fca-ac56-4da9-9562-9c23d8ec125c" Member="Account" ed:Guid="d2971833-4d3a-48c3-8ab2-2cd918d0ba53" ThisKey="AccountId" OtherKey="AccountId" Type="Account" DeleteRule="NO ACTION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="bankofasu.user_security_question" Member="UserSecurityQuestions">
+    <Type Name="UserSecurityQuestion" ed:Guid="45d68831-660c-407e-9466-bc4141a92e88">
+      <Column Name="Id" Type="System.String" DbType="VARCHAR(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="0744f43a-4f39-4c1d-82fa-e62c682a7a83" />
+      <Column Name="Q1" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="e14c485d-b7f5-4b02-aba6-221ed3507a31" />
+      <Column Name="Q2" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="9d0521e5-0fc6-49d3-a15d-0f813c3f3c86" />
+      <Column Name="Q3" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="c9b73a49-3f6b-4f4c-ac80-15ac8f0b53b6" />
+      <Column Name="A1" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="c476a360-8a99-4668-a908-88f57ec791ac" />
+      <Column Name="A2" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="1a519d79-31aa-4692-8e3f-30ef410347c9" />
+      <Column Name="A3" Type="System.String" DbType="VARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="9ec86f7b-cc98-44d3-841f-7c75bbe4f74d" />
+      <Association Name="Aspnetuser_UserSecurityQuestion" ed:AssociationGuid="8465bf49-b1bf-4de9-94c4-510f9340a253" Member="Aspnetuser" ed:Guid="6cdb66cb-2b7a-4226-90b3-5a9b988ab601" ThisKey="Id" OtherKey="Id" Type="Aspnetuser" DeleteRule="NO ACTION" IsForeignKey="true" Cardinality="One" />
+    </Type>
+  </Table>
+</Database>

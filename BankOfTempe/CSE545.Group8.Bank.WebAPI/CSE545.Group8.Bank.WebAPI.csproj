@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A0340F0B-1C7C-457F-83F0-428D6087BAF4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CSE545.Group8.Bank.WebAPI</RootNamespace>
+    <AssemblyName>CSE545.Group8.Bank.WebAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44343</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <DocumentationFile>App_Data/XmlDocument.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Jwt.3.0.0\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Web, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Web.6.9.9\lib\net45\MySql.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.CSharp.HTTP.Client, Version=3.0.0.0, Culture=neutral, PublicKeyToken=79219bf4e5ecaaca, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.CSharp.HTTP.Client.3.0.0\lib\SendGrid.CSharp.HTTP.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.3.1.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.3.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGridMail, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.5.0.0\lib\SendGridMail.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.1\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Thinktecture.IdentityModel.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Thinktecture.IdentityModel.Core.1.3.0\lib\net45\Thinktecture.IdentityModel.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\app.component.js" />
+    <Content Include="app\app.module.js" />
+    <Content Include="app\app.routing.js" />
+    <Content Include="app\main.js" />
+    <Content Include="app\users\home\account-management\account-management.component.css" />
+    <Content Include="app\users\home\account-management\account-management.component.html" />
+    <Content Include="app\users\home\account-management\account-management.component.js" />
+    <Content Include="app\users\home\add-account\add-account.component.css" />
+    <Content Include="app\users\home\add-account\add-account.component.html" />
+    <Content Include="app\users\home\add-account\add-account.component.js" />
+    <Content Include="app\users\home\add-employee\add-employee.component.css" />
+    <Content Include="app\users\home\add-employee\add-employee.component.html" />
+    <Content Include="app\users\home\add-employee\add-employee.component.js" />
+    <Content Include="app\users\home\approve-transactions\approve-transactions.component.css" />
+    <Content Include="app\users\home\approve-transactions\approve-transactions.component.html" />
+    <Content Include="app\users\home\approve-transactions\approve-transactions.component.js" />
+    <Content Include="app\users\home\create-user\create-user.component.css" />
+    <Content Include="app\users\home\create-user\create-user.component.html" />
+    <Content Include="app\users\home\create-user\create-user.component.js" />
+    <Content Include="app\users\home\credit-card\credit-card.component.css" />
+    <Content Include="app\users\home\credit-card\credit-card.component.html" />
+    <Content Include="app\users\home\credit-card\credit-card.component.js" />
+    <Content Include="app\users\home\deposit-money\deposit-money.component.css" />
+    <Content Include="app\users\home\deposit-money\deposit-money.component.html" />
+    <Content Include="app\users\home\deposit-money\deposit-money.component.js" />
+    <Content Include="app\users\home\fund-transfer\fund-transfer.component.css" />
+    <Content Include="app\users\home\fund-transfer\fund-transfer.component.html" />
+    <Content Include="app\users\home\fund-transfer\fund-transfer.component.js" />
+    <Content Include="app\users\home\main-menu.component.authgaurd.js" />
+    <Content Include="app\users\home\main-menu.component.css" />
+    <Content Include="app\users\home\main-menu.component.html" />
+    <Content Include="app\users\home\main-menu.component.js" />
+    <Content Include="app\users\home\main-menu.module.js" />
+    <Content Include="app\users\home\mainmenu-routing.module.js" />
+    <Content Include="app\users\home\model\account.js" />
+    <Content Include="app\users\home\model\application-user.js" />
+    <Content Include="app\users\home\model\credit-card.js" />
+    <Content Include="app\users\home\model\customer-profile.js" />
+    <Content Include="app\users\home\model\security-questions.js" />
+    <Content Include="app\users\home\model\transaction-builder.js" />
+    <Content Include="app\users\home\model\transaction.js" />
+    <Content Include="app\users\home\model\user-builder.js" />
+    <Content Include="app\users\home\model\user.js" />
+    <Content Include="app\users\home\notifications\notifications.component.css" />
+    <Content Include="app\users\home\notifications\notifications.component.html" />
+    <Content Include="app\users\home\notifications\notifications.component.js" />
+    <Content Include="app\users\home\payments\payments.component.css" />
+    <Content Include="app\users\home\payments\payments.component.html" />
+    <Content Include="app\users\home\payments\payments.component.js" />
+    <Content Include="app\users\home\shared\account.service.js" />
+    <Content Include="app\users\home\shared\merchant.service.js" />
+    <Content Include="app\users\home\shared\security-questions.js" />
+    <Content Include="app\users\home\shared\security-questions.service.js" />
+    <Content Include="app\users\home\shared\transactions.service.js" />
+    <Content Include="app\users\home\shared\user.service.js" />
+    <Content Include="app\users\home\summary\summary.component.css" />
+    <Content Include="app\users\home\summary\summary.component.html" />
+    <Content Include="app\users\home\summary\summary.component.js" />
+    <Content Include="app\users\home\system-log\system-log.component.css" />
+    <Content Include="app\users\home\system-log\system-log.component.html" />
+    <Content Include="app\users\home\system-log\system-log.component.js" />
+    <Content Include="app\users\home\update-profile\update-profile.component.css" />
+    <Content Include="app\users\home\update-profile\update-profile.component.html" />
+    <Content Include="app\users\home\update-profile\update-profile.component.js" />
+    <Content Include="app\users\home\view-statements\view-statements.component.css" />
+    <Content Include="app\users\home\view-statements\view-statements.component.html" />
+    <Content Include="app\users\home\view-statements\view-statements.component.js" />
+    <Content Include="app\users\home\view-statements\view-statements.service.js" />
+    <Content Include="app\users\login\forgotpassword.component.html" />
+    <Content Include="app\users\login\forgotpassword.component.js" />
+    <Content Include="app\users\login\logginguser.model.js" />
+    <Content Include="app\users\login\login-routing.module.js" />
+    <Content Include="app\users\login\login.component.css" />
+    <Content Include="app\users\login\login.component.html" />
+    <Content Include="app\users\login\login.component.js" />
+    <Content Include="app\users\login\login.module.js" />
+    <Content Include="app\users\login\login.service.js" />
+    <Content Include="app\users\login\loginResponse.model.js" />
+    <Content Include="app\users\login\securityquestions.component.html" />
+    <Content Include="app\users\login\securityquestions.component.js" />
+    <Content Include="app\users\logout\logout.component.css" />
+    <Content Include="app\users\logout\logout.component.html" />
+    <Content Include="app\users\logout\logout.component.js" />
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="assets\images\img-icon-bank.png" />
+    <Content Include="assets\images\img-icon-logout.png" />
+    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\super-hero-large.png" />
+    <Content Include="forms.css" />
+    <Content Include="Global.asax" />
+    <Content Include="index.html" />
+    <Content Include="lib\jquery.js" />
+    <Content Include="scripts\ai.0.22.19-build00125.js" />
+    <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="styles.css" />
+    <Content Include="systemjs.config.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\SystemLogsController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SessionsController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Helpers\OtpHelper.cs" />
+    <Compile Include="Infrastructure\ApplicationDbContext.cs" />
+    <Compile Include="Infrastructure\ApplicationRoleManager.cs" />
+    <Compile Include="Infrastructure\ApplicationUser.cs" />
+    <Compile Include="Infrastructure\ApplicationUserManager.cs" />
+    <Compile Include="Migrations\201610230602008_InitialCreate.cs" />
+    <Compile Include="Migrations\201610230602008_InitialCreate.Designer.cs">
+      <DependentUpon>201610230602008_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\PolymorphicAccountController.cs" />
+    <Compile Include="Models\PolymorphicUserConverter.cs" />
+    <Compile Include="Models\ModelFactory.cs" />
+    <Compile Include="Models\RoleBindingModels.cs" />
+    <Compile Include="Models\SecurityQuestionsBindingModels.cs" />
+    <Compile Include="Models\UserBindingModels.cs" />
+    <Compile Include="Providers\CustomJwtFormat.cs" />
+    <Compile Include="Providers\CustomOAuthProvider.cs" />
+    <Compile Include="RequireHttpsAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\TimeSensitivePassCode.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="TwoFactorAuthorizeAttribute.cs" />
+    <Compile Include="Validators\CustomPasswordValidator.cs" />
+    <Compile Include="Validators\CustomUserValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include=".gitignore" />
+    <Content Include="package.json" />
+    <Content Include="app\users\home\create-user\create-user.component.js.map" />
+    <Content Include="app\users\home\fund-transfer\fund-transfer.component.js.map" />
+    <Content Include="app\users\home\main-menu.component.authgaurd.js.map" />
+    <Content Include="app\users\home\main-menu.component.js.map" />
+    <Content Include="app\users\home\main-menu.module.js.map" />
+    <Content Include="app\users\home\mainmenu-routing.module.js.map" />
+    <Content Include="app\users\home\model\account.js.map" />
+    <Content Include="app\users\home\model\credit-card.js.map" />
+    <Content Include="app\users\home\model\customer-profile.js.map" />
+    <Content Include="app\users\home\model\transaction-builder.js.map" />
+    <Content Include="app\users\home\model\transaction.js.map" />
+    <Content Include="app\users\home\model\user.js.map" />
+    <Content Include="app\users\home\notifications\notifications.component.js.map" />
+    <Content Include="app\users\home\payments\payments.component.js.map" />
+    <Content Include="app\users\home\shared\account.service.js.map" />
+    <Content Include="app\users\home\shared\merchant.service.js.map" />
+    <Content Include="app\users\home\shared\transactions.service.js.map" />
+    <Content Include="app\users\home\shared\user.service.js.map" />
+    <Content Include="app\users\home\summary\summary.component.js.map" />
+    <Content Include="app\users\home\view-statements\view-statements.component.js.map" />
+    <Content Include="app\users\home\view-statements\view-statements.service.js.map" />
+    <Content Include="app\users\login\forgotpassword.component.js.map" />
+    <Content Include="app\users\login\logginguser.model.js.map" />
+    <Content Include="app\users\login\login-routing.module.js.map" />
+    <Content Include="app\users\login\login.component.js.map" />
+    <Content Include="app\users\login\login.module.js.map" />
+    <Content Include="app\users\login\login.service.js.map" />
+    <Content Include="app\users\login\loginResponse.model.js.map" />
+    <Content Include="app\users\login\securityquestions.component.js.map" />
+    <Content Include="app\users\logout\logout.component.js.map" />
+    <Content Include="app\app.component.js.map" />
+    <Content Include="app\app.module.js.map" />
+    <Content Include="app\app.routing.js.map" />
+    <Content Include="app\main.js.map" />
+    <Content Include="app\users\home\credit-card\credit-card.component.js.map" />
+    <Content Include="app\users\home\deposit-money\deposit-money.component.js.map" />
+    <Content Include="app\users\home\account-management\account-management.component.js.map" />
+    <Content Include="app\users\home\add-account\add-account.component.js.map" />
+    <Content Include="app\users\home\add-employee\add-employee.component.js.map" />
+    <Content Include="app\users\home\approve-transactions\approve-transactions.component.js.map" />
+    <Content Include="app\users\home\system-log\system-log.component.js.map" />
+    <Content Include="app\users\home\update-profile\update-profile.component.js.map" />
+    <Content Include="app\users\home\shared\security-questions.js.map" />
+    <Content Include="app\users\home\shared\security-questions.service.js.map" />
+    <Content Include="app\users\home\model\application-user.js.map" />
+    <Content Include="app\users\home\model\user-builder.js.map" />
+    <Content Include="app\users\home\model\security-questions.js.map" />
+    <None Include="Properties\PublishProfiles\BankOfTempe.pubxml" />
+    <Content Include="tsconfig.json" />
+    <Content Include="typings.json" />
+    <None Include="Properties\PublishProfiles\dd.pubxml" />
+    <None Include="Properties\PublishProfiles\testDeploy.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\users\shared\" />
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSE545.Group8.Bank.DataAccessLayer\CSE545.Group8.Bank.DataAccessLayer.csproj">
+      <Project>{0B00F20D-02DF-45F2-AF2F-FCD1527B6776}</Project>
+      <Name>CSE545.Group8.Bank.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSE545.Group8.Bank.Entities\CSE545.Group8.Bank.Entities.csproj">
+      <Project>{96BEE662-D72B-4BCE-854F-217AEDDB5BBA}</Project>
+      <Name>CSE545.Group8.Bank.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSE545.Group8.Bank.Utilities\CSE545.Group8.Bank.Utilities.csproj">
+      <Project>{ef14781d-1f61-4617-b93e-b3250949dcbf}</Project>
+      <Name>CSE545.Group8.Bank.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSE545.Group8.Bank.Validators\CSE545.Group8.Bank.Validators.csproj">
+      <Project>{85ef3d14-392b-47ba-9a9a-af4f86f39e59}</Project>
+      <Name>CSE545.Group8.Bank.Validators</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610230602008_InitialCreate.resx">
+      <DependentUpon>201610230602008_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\app.routing.ts" />
+    <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\users\home\account-management\account-management.component.ts" />
+    <TypeScriptCompile Include="app\users\home\add-account\add-account.component.ts" />
+    <TypeScriptCompile Include="app\users\home\add-employee\add-employee.component.ts" />
+    <TypeScriptCompile Include="app\users\home\approve-transactions\approve-transactions.component.ts" />
+    <TypeScriptCompile Include="app\users\home\create-user\create-user.component.ts" />
+    <TypeScriptCompile Include="app\users\home\credit-card\credit-card.component.ts" />
+    <TypeScriptCompile Include="app\users\home\deposit-money\deposit-money.component.ts" />
+    <TypeScriptCompile Include="app\users\home\fund-transfer\fund-transfer.component.ts" />
+    <TypeScriptCompile Include="app\users\home\main-menu.component.authgaurd.ts" />
+    <TypeScriptCompile Include="app\users\home\main-menu.component.ts" />
+    <TypeScriptCompile Include="app\users\home\main-menu.module.ts" />
+    <TypeScriptCompile Include="app\users\home\mainmenu-routing.module.ts" />
+    <TypeScriptCompile Include="app\users\home\model\account.ts" />
+    <TypeScriptCompile Include="app\users\home\model\application-user.ts" />
+    <TypeScriptCompile Include="app\users\home\model\credit-card.ts" />
+    <TypeScriptCompile Include="app\users\home\model\customer-profile.ts" />
+    <TypeScriptCompile Include="app\users\home\model\security-questions.ts" />
+    <TypeScriptCompile Include="app\users\home\model\transaction-builder.ts" />
+    <TypeScriptCompile Include="app\users\home\model\transaction.ts" />
+    <TypeScriptCompile Include="app\users\home\model\user-builder.ts" />
+    <TypeScriptCompile Include="app\users\home\model\user.ts" />
+    <TypeScriptCompile Include="app\users\home\notifications\notifications.component.ts" />
+    <TypeScriptCompile Include="app\users\home\payments\payments.component.ts" />
+    <TypeScriptCompile Include="app\users\home\shared\account.service.ts" />
+    <TypeScriptCompile Include="app\users\home\shared\merchant.service.ts" />
+    <TypeScriptCompile Include="app\users\home\shared\security-questions.service.ts" />
+    <TypeScriptCompile Include="app\users\home\shared\transactions.service.ts" />
+    <TypeScriptCompile Include="app\users\home\shared\user.service.ts" />
+    <TypeScriptCompile Include="app\users\home\summary\summary.component.ts" />
+    <TypeScriptCompile Include="app\users\home\system-log\system-log.component.ts" />
+    <TypeScriptCompile Include="app\users\home\update-profile\update-profile.component.ts" />
+    <TypeScriptCompile Include="app\users\home\view-statements\view-statements.component.ts" />
+    <TypeScriptCompile Include="app\users\home\view-statements\view-statements.service.ts" />
+    <TypeScriptCompile Include="app\users\login\errorResponse.ts" />
+    <TypeScriptCompile Include="app\users\login\forgotpassword.component.ts" />
+    <TypeScriptCompile Include="app\users\login\logginguser.model.ts" />
+    <TypeScriptCompile Include="app\users\login\login-routing.module.ts" />
+    <TypeScriptCompile Include="app\users\login\login.component.ts" />
+    <TypeScriptCompile Include="app\users\login\login.module.ts" />
+    <TypeScriptCompile Include="app\users\login\login.service.ts" />
+    <TypeScriptCompile Include="app\users\login\loginResponse.model.ts" />
+    <TypeScriptCompile Include="app\users\login\securityquestions.component.ts" />
+    <TypeScriptCompile Include="app\users\logout\logout.component.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>8653</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44343/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

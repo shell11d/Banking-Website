@@ -1,0 +1,51 @@
+<h2 style="text-align:center;"><i> View Statements</i> </h2>
+
+<div *ngIf="accountError">{{accountErrorMessage}}</div>
+
+<div *ngIf="!accountError">
+    <div class="form-group">
+        <label for="accounts">Select Account</label>
+        <select class="form-control" id="accounts" [(ngModel)]="selectedAccountNumber" name="accounts" #account="ngModel" required>
+            <option *ngFor="let account of accounts" [value]="account.accountId">{{account.accountId}}</option>
+        </select>
+    </div>
+    <div [hidden]="account.valid || account.pristine"
+         class="alert alert-danger">
+        You must select an account to view Statement
+    </div>
+
+    <p><font size="4">Select dates for Statements</font></p>
+
+    <h6 style="text-align:left;">
+        <datepicker [(ngModel)]="fromDate" class="success" required></datepicker>
+    </h6>to
+    <h6 style="text-align:right;"><datepicker [(ngModel)]="toDate" [showWeeks]="false" required></datepicker></h6>
+
+    <div *ngIf="datesError" class="alert alert-danger">
+        {{datesError}}
+    </div>
+    <div *ngIf="statementStatus" class="alert alert-success">
+        {{statementStatus}}
+    </div>{{fromDate}}
+
+    <button (click)="getStatements()" class="statement-button" [disabled]="!account.valid || !fromDate || !toDate">View Statement</button>
+</div>
+
+<table *ngIf="transactionsExists" class="table table-hover table-condensed">
+    <thead>
+        <tr>
+            <th>Transaction ID</th>
+            <th>Transaction Date</th>
+            <th>Amount</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let transaction of transactions">
+            <td class="info"> {{transaction.id}} </td>
+            <td class="info"> {{transaction.date}} </td>
+            <td class="info"> {{transaction.amount}}</td>
+            <td class="info"> {{transaction.description}}</td>
+        </tr>
+    </tbody>
+</table>

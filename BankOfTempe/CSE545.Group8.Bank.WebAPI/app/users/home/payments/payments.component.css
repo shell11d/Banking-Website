@@ -1,0 +1,17 @@
+#payments-container h3{
+    font-size: 20px;
+}
+
+#payments-container h2{
+    font-size: 25px;
+}
+
+#payments-container{
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 55px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    font: bold 14px sans-serif;
+    text-align: left;
+}

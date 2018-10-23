@@ -1,0 +1,43 @@
+<div id="payments-container">
+
+    <h2>Payments</h2>
+    <h3>Select a merchant to pay</h3>
+
+    <form #paymentsForm="ngForm">
+        <div id="payee" class="dropdown">
+            <select class="form-control" id="selectAccount" [(ngModel)]="selectedAccount" name="selectAccount" #selectAccount="ngModel" required>
+                <option *ngFor="let account of accounts" [value]="account">
+                    {{account.accountId}}
+                </option>
+            </select>
+        </div>
+
+        <div id="merchant" class="dropdown">
+            <select class="form-control" id="selectMerchant" [(ngModel)]="selectedMerchant" name="selectMerchantOne" #selectMerchantOne="ngModel" required>
+                <option *ngFor="let merchant of merchants" [value]="merchant">
+                    {{merchant.firstName}}
+                </option>
+            </select>
+        </div>
+
+        <h3>Enter the amount to be sent:</h3>
+        <input type="number" name="amountValue" required [(ngModel)]="amount" #amountValue="ngModel">
+        <div [hidden]="amountValue.valid || amountValue.pristine" class="alert alert-danger">
+            Invalid number
+        </div>
+
+        <input type="text" name="descriptionText" required [(ngModel)]="description" #descriptionText="ngModel" pattern="^[a-z A-Z 0-9]+$" maxlength="50">
+        <div [hidden]="descriptionText.valid || descriptionText.pristine" class="alert alert-danger">
+            Invalid description
+        </div>
+        <br><br>
+
+        <input type="number" name="otpText" required [(ngModel)]="otp" #otpText="ngModel" pattern="[0-9]{6}">
+        <div [hidden]="otpText.valid || otpText.pristine" class="alert alert-danger">
+            Invalid description
+        </div>
+        <br><br>
+
+        <button type="submit" [disabled]="!paymentsForm.form.valid" (click)="abc()">Submit</button>
+    </form>
+</div>

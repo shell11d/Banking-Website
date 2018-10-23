@@ -1,0 +1,26 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div id="summary-container">
+<h1> SUMMARY </h1><br>
+<div class="table-responsive">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>ACCOUNT NUMBER</th>
+        <th>ACCOUNT TYPE</th>
+        <th>BALANCE</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<tr *ngFor="let account of accounts">
+			<td class="info"> {{account.accountId}} </td>
+			<td class="info"> {{account.type}} </td>
+			<td class="info"> {{account.availableBalance}}</td>
+		</tr>
+    </tbody>
+  </table>
+</div>
+</div>

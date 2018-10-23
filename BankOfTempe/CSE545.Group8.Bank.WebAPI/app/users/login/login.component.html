@@ -1,0 +1,129 @@
+<div id = "login">
+<div class= img>
+<img class="img-responsive" src="assets/images/logo.png">
+</div>
+<div class="container">
+    <h1><span class = "label label-info">Welcome!</span></h1>
+    <form id="form-login" (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+        <div class="form-input">
+            <input [(ngModel)]="loggingUser.userName" ngControl="email" type="text" name="emailId" placeholder="UserName"  #email="ngModel" required pattern='^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$'>
+        </div>
+         <div [hidden]="email.valid || email.pristine" 
+             class="alert alert-danger">
+           <div *ngIf="email.errors && email.errors.required">
+            *EmailId is required
+          </div>
+          <div *ngIf="email.errors && email.errors.pattern">
+            Improper Email
+          </div>
+        </div>
+        <div class="form-input">
+            <input [(ngModel)]="loggingUser.password" ngControl="password" type="password" name="password" placeholder="Password" #password="ngModel" required pattern ="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$">
+        </div>
+        <div [hidden]="password.valid || password.pristine" 
+             class="alert alert-danger">
+           <div *ngIf="password.errors && password.errors.required">
+            *Password is required
+          </div>
+          <div *ngIf="password.errors && password.errors.pattern">
+            Password rules: 8 chars,1 alpha,number, special char.
+          </div>
+        </div>
+        <div class="form-input">
+          <label>
+            <input type="checkbox" name="virtualKey"  [(ngModel)]="virtualKey"/>Enable Virtual Keyboard
+          </label>
+        </div>
+        <div *ngIf="loggingError" class="alert alert-danger">{{loggingError}}</div>
+        <div *ngIf="forgotPassError" class="alert alert-danger">{{forgotPassError}}</div>
+        <div class="form-input">
+          <button type="button" class="btn-forgotpassword" (click)="open()">Forgot Password</button>
+          <button type="submit" name= "submit" value="LOGIN" class ="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
+        </div>
+    </form>
+    <modal [animation]="true" [keyboard]="true" [backdrop]="true" #modal>
+        <form #modalForm="ngForm">
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Forgot Password?</h4>
+            </modal-header>
+            <modal-body>
+                <h3>Answer the Security Questions to proceed!</h3>
+                <div class="form-group">
+                  <label for="securityQuestion1">Select a Question</label>
+                    <select (change)="selectedQuestion($event.target.value)" class="form-control"  id="securityQuestion1" [(ngModel)]="selectedQuestion1" name="securityQuestion1" #secQuestion1="ngModel" required>
+                      <option value="securityQuestions.securityQuestion1">{{securityQuestions.securityQuestion1}}</option>
+                    </select>
+                  <div class="form-input">
+                    <input [(ngModel)]="firstAnswer" ngControl="answerOne" type="text" name="answerOne" placeholder="Your Answer"  #answerOne="ngModel" required pattern="^[a-z A-Z ,.'-]+$">
+                  </div> 
+                  <div [hidden]="answerOne.valid || answerOne.pristine" class="alert alert-danger">
+                    <div *ngIf="answerOne.errors && answerOne.errors.required">
+                        *Your answer is required
+                    </div>
+                    <div *ngIf="answerOne.errors && answerOne.errors.pattern">
+                        Enter answer in proper format
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="securityQuestion2">Select a Question</label>
+                    <select class="form-control"  id="securityQuestion2" [(ngModel)]="selectedQuestion2" name="securityQuestion2" #secQuestion2="ngModel" required>
+                      <option value="securityQuestions.securityQuestion2">{{securityQuestions.securityQuestion2}}</option>
+                    </select>
+                  <div class="form-input">
+                    <input [(ngModel)]="secondAnswer" ngControl="answerTwo" type="text" name="answerTwo" placeholder="Your Answer"  #answerTwo="ngModel" required pattern="^[a-z A-Z ,.'-]+$">
+                  </div> 
+                  <div [hidden]="answerTwo.valid || answerTwo.pristine" class="alert alert-danger">
+                    <div *ngIf="answerTwo.errors && answerTwo.errors.required">
+                        *Your answer is required
+                    </div>
+                    <div *ngIf="answerTwo.errors && answerTwo.errors.pattern">
+                        Enter answer in proper format
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="securityQuestion3">Select a Question</label>
+                    <select class="form-control" id="securityQuestion3" [(ngModel)]="selectedQuestion3" name="securityQuestion3" #secQuestion3="ngModel" required>
+                        <option value="securityQuestions.securityQuestion3">{{securityQuestions.securityQuestion3}}</option>
+                    </select>
+                    <div class="form-input">
+                        <input [(ngModel)]="thirdAnswer" ngControl="answerThree" type="text" name="answerThree" placeholder="Your Answer" #answerThree="ngModel" required pattern="^[a-z A-Z ,.'-]+$">
+                    </div>
+                    <div [hidden]="answerThree.valid || answerThree.pristine" class="alert alert-danger">
+                        <div *ngIf="answerThree.errors && answerThree.errors.required">
+                            *Your answer is required
+                        </div>
+                        <div *ngIf="answerThree.errors && answerThree.errors.pattern">
+                            Enter answer in proper format
+                        </div>
+                    </div>
+                </div>
+            </modal-body>
+            <div *ngIf="passwordSent" class="alert alert-success">
+                {{passwordSent}}
+                <button type="button" class="btn-forgotpassword" (click)="loginBack()">Login</button>
+            </div>
+            <div *ngIf="secQuestionsValError" class="alert alert-danger">
+                {{secQuestionsValError}}
+            </div>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalCancel()">Cancel</button>
+                <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="validateForgotReq()">Submit</button>
+            </modal-footer>
+        </form>
+
+
+    </modal>
+</div>
+</div>
+<footer>
+<div>  
+	<ul>
+		<li> Follow us on:</li>
+		<li class="socialLink"><a href="https://www.facebook.com/" target="_blank"><img src="assets/images/Facebook-icon.png"></a></li>
+		<li class="socialLink"><a href="https://twitter.com/" target="_blank"><img src="assets/images/Twitter-icon.png"></a></li>
+		<li class="socialLink"><a href="https://www.linkedin.com/" target="_blank"><img src="assets/images/linkedin-icon.png"></a></li>
+	</ul>
+</div>
+</footer>
